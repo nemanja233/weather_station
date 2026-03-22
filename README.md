@@ -1,76 +1,71 @@
-⚙️ Configuration
-🌐 WiFi (RemoteXY)
+ESP8266 Weather & Environment Monitor
+
+This project uses an ESP8266 to monitor temperature and humidity with a DHT22 sensor, display data on an OLED screen, control LEDs based on conditions, and remotely monitor graphs via RemoteXY. It also fetches weather forecasts from OpenWeatherMap.
+
+Features
+Reads temperature and humidity from DHT22
+Displays live data on a 128x64 OLED
+Controls LEDs to indicate air quality:
+Green: Good
+Yellow: Moderate
+Red: Poor
+Sends live data to RemoteXY graphs
+WiFi connectivity for remote monitoring
+Fetches 3-day weather forecast from OpenWeatherMap:
+Shows min/max temperature
+Weather condition (Clear, Rain, Clouds, Snow, etc.)
+Hardware
+Component	Pin / Connection
+ESP8266	-
+DHT22	D5 (with 10kΩ pull-up between VDD and DATA)
+OLED 128x64	I2C (SDA = D2, SCL = D1)
+LED Red	D6
+LED Green	D7
+LED Yellow	D8
+Software / Libraries
+DHT sensor library
+U8g2 OLED library
+RemoteXY
+ArduinoJson (for parsing OpenWeatherMap JSON)
+ESP8266WiFi
+Usage
+Install required libraries in Arduino IDE.
+Open the project .ino file.
+
+Set your WiFi credentials in the code:
+
 #define REMOTEXY_WIFI_SSID "YOUR_SSID"
 #define REMOTEXY_WIFI_PASSWORD "YOUR_PASSWORD"
-🌦️ OpenWeatherMap API
+
+Set your OpenWeatherMap API key, city, and country:
+
 #define OWM_API_KEY   "YOUR_API_KEY"
-#define OWM_CITY      "YOUR_CITY"
-#define OWM_COUNTRY   "YOUR_COUNTRY"
-🖥️ Display Modes
-🟢 Screen 1 – Local Data
-Temperature
-Humidity
-Live graph (last values)
-🔵 Screen 2 – Forecast
-3-day forecast
-Min / Max temperature
-Weather icons (sun, cloud, rain)
-📱 RemoteXY App
-Displays:
-Temperature graph
-Humidity graph
-Air quality LEDs
-Connect via WiFi on port 6377
-🚦 Air Quality Logic
-Condition	LED
-Good (18–24°C, 35–60%)	🟢 Green
-Medium	🟡 Yellow
-Bad	🔴 Red
-📡 Weather Forecast
-Source: OpenWeatherMap API
-Updates every 10 minutes
-Uses JSON parsing with filtering (efficient memory usage)
-Shows:
-Day (Mon, Tue, …)
-Min/Max temperature
-Weather condition
-📊 Graph System
-OLED graph width: 128 points
-Auto-scrolling
-Maps temperature dynamically
-🔄 Timing
-Sensor read: every 1 second
-Screen switch: every 5 seconds
-Forecast update: every 10 minutes
-⚠️ Important Notes
-Use 3.3V ONLY (ESP8266 is NOT 5V safe)
-DHT22 must have pull-up resistor
-I2C pins are fixed:
-D1 → SCL
-D2 → SDA
-Make sure WiFi connects before API calls
-🖼️ UI Features
-Custom icons (weather + system)
-Smooth graph rendering
-Multi-screen interface
-Loading / fetching animation
-🔧 Future Improvements
-🌈 Better icons / animations
-📅 5-day forecast
-🔋 Battery + deep sleep
-🌍 Web dashboard
-📈 Data logging (SD / cloud)
-📄 License
-
-Open-source – free to use and modify.
-
-🙌 Credits
-U8g2 Library
-ArduinoJson
-OpenWeatherMap API
+#define OWM_CITY      "CITY"
+#define OWM_COUNTRY   "COUNTRY"
+Connect the hardware as shown in the Hardware table.
+Upload the code to the ESP8266.
+Open the Serial Monitor to check the WiFi connection.
+Monitor temperature/humidity on the OLED or remotely via RemoteXY.
+The OLED will display a 3-day forecast fetched from OpenWeatherMap.
+LED Indicators
+Green LED – Comfortable temperature & humidity
+Yellow LED – Moderate / warning
+Red LED – Poor / extreme conditions
 RemoteXY
-⭐ Project Status
+Graphs show live temperature and humidity trends
+LED status mirrors physical LEDs
+Works over local WiFi network
+OpenWeatherMap Forecast
+Fetches weather data every 10 minutes (OWM_FETCH_INTERVAL = 600000UL)
+Displays:
+Day of the week
+Min/Max temperature
+Weather condition icon
+Icons supported: Clear, Rain, Clouds, Snow, Drizzle
+License
 
-✔ Fully working
-✔ Optimized memory usage
-✔ Stable WiFi + API
+This project is open-source. Feel free to copy, modify, and use it in your own projects.
+
+Author
+
+Nemanja Stojadinovic
