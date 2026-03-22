@@ -14,8 +14,8 @@ U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);  // SCK=D1, SDA=D2
 #define REMOTEXY_MODE__WIFI
 #include <ESP8266WiFi.h>
 
-#define REMOTEXY_WIFI_SSID "neca"
-#define REMOTEXY_WIFI_PASSWORD "nexxa2007"
+#define REMOTEXY_WIFI_SSID "YOUR_SSID"
+#define REMOTEXY_WIFI_PASSWORD "YOUR_PASSWORD"
 #define REMOTEXY_SERVER_PORT 6377
 #include <RemoteXY.h>
 
@@ -42,9 +42,9 @@ struct {
 /////////////////////////////////////////////
 
 // ===== OPENWEATHERMAP SETTINGS =====
-#define OWM_API_KEY   "b36b6058f848fdbdcbab04436059ad85"
-#define OWM_CITY      "Innsbruck"
-#define OWM_COUNTRY   "AT"
+#define OWM_API_KEY   "YOUR API KEY"
+#define OWM_CITY      "CITY"
+#define OWM_COUNTRY   "COUNTRY"
 #define OWM_FETCH_INTERVAL  600000UL
 
 // ===== FORECAST STORAGE =====
